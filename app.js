@@ -19,11 +19,14 @@ function getMatches(name)
 	api.getSummonersByName('na',name,function(err,data) {
 		var id = data[name]['id'];
 		api.getRecentGames('na',id,function(err,res) {
-			console.log(data);
-			for(var x = 0;x<(res["games"].length());x++)
+			//console.log(data);
+            console.log(res.games.length);
+			
+            for(var x = 0;x<(res.games.length);x++)
 			{
-				console.log(res["games"][x]["stats"]);
+				console.log(res.games[x].stats);
 			}
+          
 		});
 	});
 }
