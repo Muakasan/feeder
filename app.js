@@ -12,6 +12,18 @@ app.use(express.static('static'));
 
 app.listen(3000);
 
-api.getSummonersByName('na', 'mabotkin', function(err,data) {
-    console.log(data);
-});
+getMatches("mabotkin");
+
+function getMatches(name)
+{
+	api.getSummonersByName('na',name,function(err,data) {
+		var id = data[name]['id'];
+		api.getRecentGames('na',id,function(err,res) {
+			console.log(data);
+			for(var x = 0;x<(res["games"].length());x++)
+			{
+				console.log(res["games"][x]["stats"]);
+			}
+		});
+	});
+}
